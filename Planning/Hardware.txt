@@ -1,0 +1,4 @@
+Touch Input (Tablet)
+Video Capture
+Microphone
+Speakers

@@ -1,0 +1,9 @@
+Interface
+-Touch Menu
+
+Face-Recognition
+-Greeting
+
+Infomation
+-Maps
+-Staff Contact Info
