@@ -1,10 +1,43 @@
+Name:Sentery Bot
+
+Tablet act as client for more powerful processing
+
+Maps:Internal and campus
+Actual moving guidance? or printing out maps
+
 Voice Recogntion
 
 Noticeboard -
-Event infomation
+Event infomation - Special days such as Alan Turings birthday
 
 Videos
 
 Look alikes
 
 Deadlines
+
+Last time seen remembered and greeting changed
+
+Ask if it's seen someone.
+
+Gait recogntion
+
+Tell Jokes
+
+Make a really loud noise if someone unplugs it
+
+Timetables -
+ask user for what course they are doing or just display them
+
+Note adding (Like the atrium wall thing at the start of this year)
+They add who the message is to and next time the robot meets them it tells them.
+
+Weather infomation
+
+Exam timetables - Say good luck to people
+
+Open Day Announcments - This event is in progress in room whatever *Displays Map*
+
+Virtual face construction
+
+Computer Sciencey things
