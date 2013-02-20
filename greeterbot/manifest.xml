@@ -1,0 +1,18 @@
+<package>
+  <description brief="greeterrobot">
+
+     greeterrobot
+
+  </description>
+  <author>Peter Hammonds</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/greeterrobot</url>
+
+<depend package="sensor_msgs"/>
+<depend package="ptu_control"/>
+<depend package="ptu46"/>
+
+</package>
+
+

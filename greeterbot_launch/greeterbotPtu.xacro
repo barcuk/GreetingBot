@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+	 xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+	 xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	 xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	 name="lewis">
+
+<xacro:property name="thickness" value=".013" />
+<xacro:macro name="default_inertia" params="">
+	<inertial>
+		<mass value="1"/>
+		<inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
+		<origin/>
+	</inertial>
+</xacro:macro>
+
+<xacro:macro name="easy_cylinder" params="name radius length *vorigin *corigin *material">
+<link name="${name}">
+	<xacro:default_inertia />
+	<visual>
+		<xacro:insert_block name="vorigin" />
+		<geometry>
+			<cylinder radius="${radius}" length="${length}" />
+		</geometry>
+
+		<xacro:insert_block name="material" />
+	</visual>
+
+	<collision>
+		<xacro:insert_block name="corigin" />
+		<geometry>
+			<cylinder radius="${radius}" length="${length}" />
+		</geometry>
+	</collision>
+</link>
+</xacro:macro>
+
+<xacro:macro name="easy_box" params="name size *vorigin *corigin *material">
+<link name="${name}">
+	<xacro:default_inertia />
+	<visual>
+		<xacro:insert_block name="vorigin" />
+		<geometry>
+			<box size="${size}" />
+		</geometry>
+		<xacro:insert_block name="material" />
+	</visual>
+
+	<collision>
+		<xacro:insert_block name="corigin" />
+		<geometry>
+			<box size="${size}" />
+		</geometry>	
+	</collision>
+</link>
+</xacro:macro>
+
+<xacro:macro name="fixedjoint" params="name parent child *origin">
+<joint name="${name}" type="fixed">
+	<xacro:insert_block name="origin" />
+	<parent link="${parent}"/>
+	<child link="${child}"/>
+</joint>
+</xacro:macro>
+
+<material name="black">
+		<color rgba="0 0 0 1"/>
+</material>
+
+<material name="gray">
+		<color rgba=".8 .8 .8 1"/>
+</material>
+
+<xacro:easy_cylinder name="base_link" radius="0.26" length=".30">
+	<origin xyz="0 0 .15"/>
+	<origin xyz="0 0 .15"/>
+	<material name="lewisred">
+	<color rgba="1 0 0 1"/>
+	</material>
+</xacro:easy_cylinder>
+
+<xacro:easy_box name="ptu_base" size="0.04 .07 .05">	
+	<origin xyz="0 0.015 0"/>
+	<origin xyz="0 0.015 0"/>
+	<material name="black"/>
+</xacro:easy_box>
+<xacro:fixedjoint name="toptubase" parent="base_link" child="ptu_base">
+	<origin xyz="0 -0.0075 .0275"/>
+</xacro:fixedjoint>
+
+<xacro:easy_box name="ptu_piece" size="0.04 .04 .06">	
+	<origin/><origin/>
+	<material name="black"/>
+</xacro:easy_box>
+
+<joint name="pan" type="continuous">
+	<origin xyz="0 0 .055"/>
+	<axis xyz="0 0 1"/>
+	<parent link="ptu_base"/>
+	<child link="ptu_piece"/>
+</joint>
+
+<xacro:easy_box name="ptu_mount" size="0.04 .27 .03">	
+	<origin/><origin/>
+	<material name="gray"/>
+</xacro:easy_box>
+
+<joint name="tilt" type="continuous">
+	<origin xyz="0 0 .065"/>
+	<axis xyz="0 -1 0"/>
+	<parent link="ptu_piece"/>
+	<child link="ptu_mount"/>
+</joint>
+
+</robot>
+
